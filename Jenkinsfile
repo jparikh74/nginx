@@ -4,6 +4,7 @@ pipeline {
     ecrurl = "https://986448038492.dkr.ecr.us-west-2.amazonaws.com"
     ecrcredentials = "ecr:us-west-2:aws-credentials"
     dockerImage = ''
+   // AWS_DEFAULT_REGION = us-west-2
   } 
   agent any
   stages {
@@ -26,7 +27,7 @@ stage('Deploy Master Image') {
         script {
           docker.withRegistry(ecrurl, ecrcredentials) {     
             //dockerImage.push("$BUILD_NUMBER")
-             dockerImage.push('1.2.4')
+             dockerImage.push('1.2.5')
 
           }
         }
@@ -38,9 +39,10 @@ stage('Deploy Master Image') {
       steps{
         //sh "docker rmi $imagename:$BUILD_NUMBER"
          sh "docker rmi $imagename:latest"
-	 sh "aws ecr describe-repositories"
+	 sh "aws ecr describe-repositories --region $AWS_DEFAULT_REGION"
 
       }
     } // End of remove unused docker image for master
   }  
 } //end of pipeline
+
