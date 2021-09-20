@@ -25,7 +25,7 @@ stage('Deploy Master Image') {
       steps{
         script {
           docker.withRegistry(ecrurl, ecrcredentials) {     
-            dockerImage.push("$BUILD_NUMBER")
+            //dockerImage.push("$BUILD_NUMBER")
              dockerImage.push('1.2.4')
 
           }
@@ -36,7 +36,7 @@ stage('Deploy Master Image') {
  
     stage('Remove Unused docker image - Master') {
       steps{
-        sh "docker rmi $imagename:$BUILD_NUMBER"
+        //sh "docker rmi $imagename:$BUILD_NUMBER"
          sh "docker rmi $imagename:latest"
 
       }
