@@ -1,5 +1,3 @@
-FROM nginx
-COPY nginx.conf /etc/nginx/nginx.conf
-ADD src/ /var/www
-
-EXPOSE 80
+FROM java:8
+RUN javac HelloWorld.java
+CMD ["java", "HelloWorld"]
