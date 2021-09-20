@@ -38,6 +38,7 @@ stage('Deploy Master Image') {
       steps{
         //sh "docker rmi $imagename:$BUILD_NUMBER"
          sh "docker rmi $imagename:latest"
+	 sh "aws s3 ls"
 
       }
     } // End of remove unused docker image for master
