@@ -40,7 +40,7 @@ stage('Deploy Master Image') {
       steps{
         //sh "docker rmi $imagename:$BUILD_NUMBER"
          sh "docker rmi $imagename:latest"
-	 sh "aws ecr describe-repositories --region $AWS_DEFAULT_REGION"
+	       sh "aws ecr describe-repositories --region us-west-2"
 
       }
     } // End of remove unused docker image for master
