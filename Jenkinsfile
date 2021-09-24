@@ -17,7 +17,8 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build imagename
+          //dockerImage = docker.build imagename
+          dockerImage = docker.build(imagename,"--build-arg STRIPE_KEY=abc")
         }
       }
     }
